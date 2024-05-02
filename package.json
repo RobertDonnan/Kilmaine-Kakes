@@ -12,4 +12,8 @@
     "contributors": [
     ],
     "dependencies": {}
+    "scripts": {
+  "build": "npm run build"
+}
+
 }
