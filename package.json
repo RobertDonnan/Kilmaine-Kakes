@@ -14,7 +14,7 @@
     "dependencies": {}
     "scripts": {
   "build": "npm run build"
-        npm install -g npm-check-updates
+        
 
 }
 
