@@ -12,6 +12,7 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,6 +21,20 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+            - name: Deploy a Deploy Request
+  # You may pin to the exact commit or the version.
+  # uses: planetscale/deploy-deploy-request-action@ddb9d1c593391e6d1601d97e8aa44e3d4ea302f9
+  uses: planetscale/deploy-deploy-request-action@v4
+  with:
+    # The name of the database.
+    database_name: 
+    # The number of the deploy request to deploy. Defaults to the latest deploy request.
+    number: # optional
+    # The name of the organization that owns the database.
+    org_name: 
+    # If set to `true`, this action will wait for the deploy request to merge before exiting.
+    wait: # optional
+          
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
