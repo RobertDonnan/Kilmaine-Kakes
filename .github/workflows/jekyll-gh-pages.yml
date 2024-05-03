@@ -50,7 +50,7 @@ jobs:
        with:
     # Required approvers
         approvers: RobertDonnan, rd4921
-        secret: ${{ github.TOKEN }}
+        secret: ${{ GITHUB_TOKEN }}
     
            
 
