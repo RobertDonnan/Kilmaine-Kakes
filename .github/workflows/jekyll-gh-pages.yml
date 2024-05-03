@@ -50,7 +50,7 @@ jobs:
        with:
     # Required approvers
         approvers: RobertDonnan, rd4921
-        secret: ${{ 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 }}
+        secret: ${{ secrets.actions }}
     
           
   # Deployment job
