@@ -38,6 +38,29 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
+                    - name: Manual Workflow Approval
+  # You may pin to the exact commit or the version.
+  # uses: trstringer/manual-approval@a824dad59ac64ac825ab8725599e483e24aa2815
+  uses: trstringer/manual-approval@v1.9.0
+  with:
+    # Required approvers
+    approvers: 
+    # Secret
+    secret: 
+    # Minimum number of approvals to progress workflow
+    minimum-approvals: # optional
+    # The custom subtitle for the issue
+    issue-title: # optional
+    # The custom body for the issue
+    issue-body: # optional
+    # Whether or not to filter out the user who initiated the workflow as an approver if they are in the approvers list
+    exclude-workflow-initiator-as-approver: # optional
+    # Comma separated list of words that can be used to approve beyond the defaults.
+    additional-approved-words: # optional, default is 
+    # Comma separated list of words that can be used to deny beyond the defaults.
+    additional-denied-words: # optional, default is 
+          
+
   # Deployment job
   deploy:
     environment:
