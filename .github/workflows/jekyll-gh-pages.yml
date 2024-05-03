@@ -51,9 +51,7 @@ jobs:
     # Required approvers
         approvers: robertdonnan
         secret: ${{ github.TOKEN }}
-        name: Deploy to production
-        run: echo deploying
-  
+    
            
 
   # Deployment job
