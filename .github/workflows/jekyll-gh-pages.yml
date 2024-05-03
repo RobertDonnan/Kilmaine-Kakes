@@ -50,7 +50,7 @@ jobs:
        with:
     # Required approvers
         approvers: RobertDonnan, rd4921
-        secret: ${{ secrets.actions }}
+        secret: ${{ secrets.Netbeans }}
     
           
   # Deployment job
