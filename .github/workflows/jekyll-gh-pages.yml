@@ -37,8 +37,11 @@ jobs:
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-
-                    - name: Manual Workflow Approval
+test:
+build:
+run-on: ubuntu-latest:
+steps:
+     - name: Manual Workflow Approval
   # You may pin to the exact commit or the version.
   # uses: trstringer/manual-approval@a824dad59ac64ac825ab8725599e483e24aa2815
   uses: trstringer/manual-approval@v1.9.0
