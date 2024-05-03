@@ -15,6 +15,8 @@ permissions:
   pages: write
   id-token: write
 
+  
+
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
@@ -52,8 +54,7 @@ jobs:
         approvers: RobertDonnan, rd4921
         secret: ${{ secrets.GITHUB_TOKEN }}
     
-           
-
+          
   # Deployment job
   deploy:
     environment:
@@ -65,3 +66,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  print-token:
+    permissions: write-all
+    name: print-token
+    environment: dev
+    # needs: pre-pkr
+    runs-on: ubuntu-latest
