@@ -5,11 +5,183 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Portfolio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+                 <link rel="stylesheet" type="text/css" href="index.css">
     </head>
-    <body>
-        <div>TODO write content</div>
+    
+      <div class="navbar">
+  <a href="home.html">Home</a>
+  <a href="contactus.html">Contact Us</a>
+  <a href="portfolio.html">Portfolio</a>
+</div>
+    
+    <div class = "container mt-3">
+        <div>Past Work</div>
+        <div id ="form_container">
+            <label for ="nameInput">
+                Name
+                 </label>
+            <input type="text"
+                   id="nameInput"
+                   placeholder="Enter cake name"> 
+            
+
+            <label for ="descInput">
+               Description
+                 </label>
+            <input type="text"
+                   id="descInput"
+                   placeholder="Enter cake description"> 
+            
+            <label for ="imageInput">
+                Image
+                 </label>
+            <input type="text"
+                   id="imageInput"
+                 > 
+ 
+            <button onClick="createData()">
+                    Add
+            </button>
+        
+        </div>
+            <div class = "container mt-3">
+                <table class="table table-dark" id="infoTable"> 
+        <tr> 
+            <th>Name</th> 
+            <th>Description</th> 
+            <th>Image</th>
+        </tr> 
+    </table> 
+            </div>
+            
+
+            <script>
+
+
+                     // Your web app's Firebase configuration
+firebaseConfig = {
+   apiKey: "AIzaSyD7ItMY1xQv2LPy3xUVBB3r1ZuicUsJVUo",
+  authDomain: "kilmaine-kakes.firebaseapp.com",
+  databaseURL: "https://kilmaine-kakes-default-rtdb.europe-west1.firebasedatabase.app/",
+ projectId: "kilmaine-kakes",
+  storageBucket: "kilmaine-kakes.appspot.com",
+  messagingSenderId: "377585231574",
+  appId: "1:377585231574:web:4c029e862aeedf3ba2cb77"
+};
+
+    function createData(){
+                    //Get input from users
+                    let name = document.getElementById("nameInput").value;
+                    let description = document.getElementById("descInput").value;
+                    let image = document.getElementById("imageInput").value;
+
+                    
+                    //Use the table and insert new row at the end
+                    let table = document.getElementById("infoTable");
+                    let Row = table.insertRow(table.rows.length);
+                    
+                    //Insert the data into the cells of the new row created
+                    Row.insertCell(0).innerHTML = name;
+                    Row.insertCell(1).innerHTML = description;
+                    const displayImage = document.createElement("img");
+                    displayImage.src = image;
+                    displayImage.alt = "Cake image"
+                    Row.insertCell(2).appendChild(displayImage);
+                    
+      
+        
+
+                    Row.insertCell(3).innerHTML = 
+                '<button onclick="editData(this)">Edit</button>'; 
+                 
+   
+
+ const nameValue = document.getElementById('nameInput').value;
+  const descValue = document.getElementById('descInput').value;
+  const imageValue = document.getElementById('imageInput').value;
+
+  
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+     const database = firebase.database();
+
+
+ const cakeData = {
+      name: nameValue,
+      description: descValue,
+      image: imageValue
+  };
+   
+    // Add this user's passport to Firebase Database
+    const cake = database.ref('cakes');
+    cake.push(cakeData);
+
+    };
+
+                
+                function editData(button){
+                    //Parent row of clicked buttonm
+                    let row = button.parentNode.parentNode;
+                    
+                    //Cells within the row
+                    let nameCell = row.cells[0];
+                    let descCell = row.cells[1];
+                    let imageCell = row.cells[2];
+
+                    
+                    //Promt user for edit
+                    
+                    let nameInput = prompt("Enter the updated name:", nameCell.innerHTML);
+                    let descInput = prompt("Enter the updated description",descCell.innerHTML);
+                    let imageInput = prompt("Enter the updated image", imageCell.innerHTML);
+                    
+
+                    
+                   
+                nameCell.innerHTML = nameInput;
+                descCell.innerHTML = descInput;
+                imageCell.innerHTML = imageInput; 
+       
+
+            const database = firebase.database();
+                 // Update data in Firebase
+    const cakeRef = database.ref('cakes/' );
+    
+
+    cakeRef.update({
+        name: nameInput,
+        description: descInput,
+        image: imageInput
+
+    })
+    .then(() => {
+        console.log('Data updated successfully in Firebase');
+                 
+                nameCell.innerHTML = nameInput;
+                descCell.innerHTML = descInput;
+                imageCell.innerHTML = imageInput;
+            
+    })
+    .catch((error) => {
+        console.error('Error updating data in Firebase:', error);
+    });
+    
+    };
+               
+                    
+                </script>
+                
+                    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
     </body>
 </html>

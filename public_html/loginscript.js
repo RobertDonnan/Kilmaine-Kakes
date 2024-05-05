@@ -14,7 +14,6 @@
   storageBucket: "kilmaine-kakes.appspot.com",
   messagingSenderId: "377585231574",
   appId: "1:377585231574:web:4c029e862aeedf3ba2cb77",
-
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
