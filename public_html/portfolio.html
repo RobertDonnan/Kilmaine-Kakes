@@ -12,6 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                  <link rel="stylesheet" type="text/css" href="index.css">
     </head>
     
+ <img style='display:  block; margin-left:  auto;' src="images/OIG2.JPG" height="100"  alt="logo">
       <div class="navbar">
   <a href="home.html">Home</a>
   <a href="contactus.html">Contact Us</a>
@@ -26,6 +27,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                  </label>
             <input type="text"
                    id="nameInput"
+                   minlength="6"
+                  maxlength="5"
                    placeholder="Enter cake name"> 
             
 
@@ -33,15 +36,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                Description
                  </label>
             <input type="text"
+                   minlength="6"
+                    maxlength="5"
                    id="descInput"
                    placeholder="Enter cake description"> 
             
             <label for ="imageInput">
                 Image
                  </label>
-            <input type="text"
-                   id="imageInput"
-                 > 
+            <input type="url"
+                   id="imageInput"> 
  
             <button onClick="createData()">
                     Add
@@ -73,6 +77,9 @@ firebaseConfig = {
   appId: "1:377585231574:web:4c029e862aeedf3ba2cb77"
 };
 
+
+
+
     function createData(){
                     //Get input from users
                     let name = document.getElementById("nameInput").value;
@@ -84,43 +91,42 @@ firebaseConfig = {
                     let table = document.getElementById("infoTable");
                     let Row = table.insertRow(table.rows.length);
                     
-                    //Insert the data into the cells of the new row created
+       if (name && description && image.includes('http')) {
+          //Insert the data into the cells of the new row created
                     Row.insertCell(0).innerHTML = name;
                     Row.insertCell(1).innerHTML = description;
                     const displayImage = document.createElement("img");
                     displayImage.src = image;
-                    displayImage.alt = "Cake image"
+                    displayImage.alt = "Cake image";
                     Row.insertCell(2).appendChild(displayImage);
-                    
-      
-        
-
                     Row.insertCell(3).innerHTML = 
                 '<button onclick="editData(this)">Edit</button>'; 
-                 
-   
+                
 
  const nameValue = document.getElementById('nameInput').value;
   const descValue = document.getElementById('descInput').value;
   const imageValue = document.getElementById('imageInput').value;
-
   
-
+  
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-     const database = firebase.database();
+const database = firebase.database();
 
 
- const cakeData = {
-      name: nameValue,
-      description: descValue,
-      image: imageValue
-  };
+    // Create cakeData object to save input before stored in database
+   const cakeData = {
+        name: nameValue,
+        description: descValue,
+        image: imageValue
+    };
    
-    // Add this user's passport to Firebase Database
     const cake = database.ref('cakes');
-    cake.push(cakeData);
+    cake.push(cakeData); 
+       }else {
+           console.error("Please enter all fields");
+       }
 
+    
     };
 
                 
@@ -172,8 +178,8 @@ firebase.initializeApp(firebaseConfig);
     });
     
     };
-               
-                    
+    
+            
                 </script>
                 
                     <!-- The core Firebase JS SDK is always required and must be listed first -->

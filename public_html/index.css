@@ -41,4 +41,23 @@ html, body {
   color: black;
 }
 
+p {
+    font-size: 1em;
+    color: #ddd;
+}
+
+h1 {
+    font-size: 2em;
+    color: #ddd;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #ddd;
+}
+
+div {
+    font-size: 1.1em;
+    color: #ddd;
+}
 
