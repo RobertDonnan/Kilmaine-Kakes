@@ -28,7 +28,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
             <input type="text"
                    id="nameInput"
                    minlength="6"
-                  maxlength="5"
+                  maxlength="20"
                    placeholder="Enter cake name"> 
             
 
@@ -37,7 +37,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
                  </label>
             <input type="text"
                    minlength="6"
-                    maxlength="5"
+                    maxlength="100"
                    id="descInput"
                    placeholder="Enter cake description"> 
             
@@ -91,7 +91,7 @@ firebaseConfig = {
                     let table = document.getElementById("infoTable");
                     let Row = table.insertRow(table.rows.length);
                     
-       if (name && description && image.includes('http')) {
+       if (!name.includes('DROP') && !name.includes('INSERT') && !name.includes('UPDATE') && !name.includes('DELETE') && !description.includes('DROP') && !description.includes('INSERT') && !description.includes('UPDATE') && !description.includes('DELETE')&& image.includes('https') && !image.includes('DROP') && !image.includes('INSERT') && !image.includes('UPDATE') && !image.includes('DELETE')) {
           //Insert the data into the cells of the new row created
                     Row.insertCell(0).innerHTML = name;
                     Row.insertCell(1).innerHTML = description;
@@ -119,17 +119,17 @@ const database = firebase.database();
         description: descValue,
         image: imageValue
     };
-   
+   //pushes to database 
     const cake = database.ref('cakes');
     cake.push(cakeData); 
        }else {
-           console.error("Please enter all fields");
+           alert("Please enter all fields");
        }
 
     
     };
 
-                
+                //function to allow user to edit data and save it to the fields and the database 
                 function editData(button){
                     //Parent row of clicked buttonm
                     let row = button.parentNode.parentNode;
