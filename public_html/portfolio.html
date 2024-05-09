@@ -28,7 +28,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
             <input type="text"
                    id="nameInput"
                    minlength="6"
-                  maxlength="20"
+                  maxlength="25"
                    placeholder="Enter cake name"> 
             
 
@@ -91,7 +91,7 @@ firebaseConfig = {
                     let table = document.getElementById("infoTable");
                     let Row = table.insertRow(table.rows.length);
                     
-       if (!name.includes('DROP') && !name.includes('INSERT') && !name.includes('UPDATE') && !name.includes('DELETE') && !description.includes('DROP') && !description.includes('INSERT') && !description.includes('UPDATE') && !description.includes('DELETE')&& image.includes('https') && !image.includes('DROP') && !image.includes('INSERT') && !image.includes('UPDATE') && !image.includes('DELETE')) {
+       if (!name.includes('DROP') && !name.includes('INSERT') && !name.includes('UPDATE') && !name.includes('DELETE') && name && !description.includes('DROP') && !description.includes('INSERT') && !description.includes('UPDATE') && !description.includes('DELETE') && description && image.includes('https') && !image.includes('DROP') && !image.includes('INSERT') && !image.includes('UPDATE') && !image.includes('DELETE')) {
           //Insert the data into the cells of the new row created
                     Row.insertCell(0).innerHTML = name;
                     Row.insertCell(1).innerHTML = description;
